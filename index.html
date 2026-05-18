@@ -1,26 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Random</title>
+    <title>Pokemon Fight</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>5 Random Pokemon</h1>
-    <button onclick="getRandomPokemon()">Get Pokemon!</button>
-    <div id="pokemon-container"></div>
-    <div>
-        <p id="contador-pokemon">Total Pokémon mostrados: 0</p>
-    </div>
+    <main class="app-shell">
+        <section class="trainer-panel" data-trainer="1">
+            <h1>Entrenador 1</h1>
 
-    <div id="pelea-pokemon-container">
-        <h2>Simulador de Pelea</h2>
-        <input type="number" placeholder="ID Pokémon 1" id="primer-pokemon">
-        <input type="number" placeholder="ID Pokémon 2" id="segundo-pokemon">
-        <br><br>
-        <button onclick="pelea()">¡PELEAR!</button>
-        <div id="pelea-resultado"></div>
-    </div>
+            <div class="trainer-form">
+                <input type="text" id="trainer-1-name" placeholder="Nombre entrenador">
+                <input type="text" id="trainer-1-pokemon" placeholder="Nombre o ID Pokemon">
+            </div>
+
+            <div class="preview-card" id="trainer-1-preview">
+                <div class="empty-state">Busca un Pokemon para verlo aqui.</div>
+            </div>
+
+            <div class="panel-actions">
+                <button class="secondary-button" onclick="cancelSelection(1)">Cancelar</button>
+                <button onclick="confirmSelection(1)">Confirmar</button>
+            </div>
+        </section>
+
+        <section id="pelea-pokemon-container">
+            <div class="center-actions">
+                <button class="secondary-button" id="toggle-board-button" onclick="toggleLeaderboard()">Leaderboard</button>
+                <button class="secondary-button" onclick="cleanFields()">Clean</button>
+            </div>
+
+            <div id="battle-view">
+                <h2>Simulador de Pelea</h2>
+                <div class="battle-stage" id="battle-stage">
+                    <div class="battle-slot" id="battle-slot-1">
+                        <span>Entrenador 1</span>
+                        <p>Sin Pokemon</p>
+                    </div>
+                    <div class="versus">VS</div>
+                    <div class="battle-slot" id="battle-slot-2">
+                        <span>Entrenador 2</span>
+                        <p>Sin Pokemon</p>
+                    </div>
+                </div>
+
+                <button class="fight-button" onclick="pelea()">¡PELEAR!</button>
+                <div id="pelea-resultado"></div>
+            </div>
+
+            <div id="leaderboard-view" class="hidden">
+                <h2>Mas Victorias</h2>
+                <div id="leaderboard-list">
+                    <div class="empty-state">Cargando puntajes...</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trainer-panel" data-trainer="2">
+            <h1>Entrenador 2</h1>
+
+            <div class="trainer-form">
+                <input type="text" id="trainer-2-name" placeholder="Nombre entrenador">
+                <input type="text" id="trainer-2-pokemon" placeholder="Nombre o ID Pokemon">
+            </div>
+
+            <div class="preview-card" id="trainer-2-preview">
+                <div class="empty-state">Busca un Pokemon para verlo aqui.</div>
+            </div>
+
+            <div class="panel-actions">
+                <button class="secondary-button" onclick="cancelSelection(2)">Cancelar</button>
+                <button onclick="confirmSelection(2)">Confirmar</button>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
